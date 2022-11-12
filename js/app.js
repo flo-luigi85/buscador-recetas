@@ -33,6 +33,14 @@ function iniciarApp() {
       .then((resultado) => mostrarRecetas(resultado.meals));
   }
   function mostrarRecetas(recetas = []) {
+
+    limpiarHtml(resultado);
+
+    const heading = document.createElement('H2');
+    heading.classList.add('text-center','text-black', 'my-5' );
+    heading.textContent = recetas.length ? 'Resultados': 'No hay resultados';
+    resultado.appendChild(heading);
+
     // Iterar en los resultados
     recetas.forEach((receta) => {
       const { idMeal, strMeal, strMealThumb } = receta;
@@ -59,6 +67,13 @@ function iniciarApp() {
       const recetaButton = document.createElement("BOTTON");
       recetaButton.classList.add("btn", "btn-danger", "w-100");
       recetaButton.textContent = "Ver Receta";
+      /////////////////////////////////
+      //recetaButton.dataset.bsTarget = "#modal";
+      //recetaButton.dataset.bsToggle = "modal";
+      recetaButton.onclick = function(){
+        seleccionarReceta(idMeal)
+      }
+
 
       // Inyectando en el codigo HTML
       recetaCardBody.appendChild(recetaHeading);
@@ -71,8 +86,18 @@ function iniciarApp() {
 
       resultado.appendChild(recetaContenedor);
 
-      console.log(recetaButton);
+    
     });
+  }
+
+  function seleccionarReceta(id){
+    console.log(id);
+  }
+
+  function limpiarHtml(selector){
+    while(selector.firstChild){
+      selector.removeChild(selector.firstChild);
+    }
   }
 }
 
