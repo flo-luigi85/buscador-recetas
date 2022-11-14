@@ -26,7 +26,6 @@ function iniciarApp() {
     });
   }
   function seleccionarCategoria(e) {
-    //console.log(e.target.value);
     const categoria = e.target.value;
     const url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoria}`;
     fetch(url)
@@ -73,12 +72,18 @@ function iniciarApp() {
       resultado.appendChild(recetaContenedor);
     });
   }
+
+
   function seleccionarReceta(id) {
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
     fetch(url)
       .then((respuesta) => respuesta.json())
-      .then((resultado) => mostrarRecetaModal(resultado.meals[0]));
+      .then((resultado) => mostrarRecetaModal(resultado.meals[0])); 
+
+      
   }
+
+
   function mostrarRecetaModal(receta) {
     const { idMeal, strInstructions, strMeal, strMealThumb } = receta;
     // Añadiendo contenido al modal
