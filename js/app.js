@@ -76,9 +76,6 @@ function iniciarApp() {
 
  async function seleccionarReceta(id) {
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
-    /* fetch(url)
-      .then((respuesta) => respuesta.json())
-      .then((resultado) => mostrarRecetaModal(resultado.meals[0])); */ 
       try{
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
